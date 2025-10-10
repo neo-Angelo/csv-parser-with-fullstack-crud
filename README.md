@@ -71,7 +71,7 @@ EXIT;
 a. **Inicie o servidor Backend:**
 * No terminal da pasta `backend`, execute:
 ```bash
-nodemon app.js
+nodemon app.js ou node app.js
 ```
 * O servidor estará disponível em `http://localhost:3000`.
 
