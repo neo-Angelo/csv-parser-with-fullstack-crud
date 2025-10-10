@@ -90,21 +90,13 @@ exports.uploadCsv = (req, res) => {
         });
 };
 
-exports.listarDados = async (req, res) => {
-    try {
-        const [rows] = await db.query('SELECT * FROM escolas_dependencias ORDER BY id DESC');
-        res.status(200).json(rows);
-    } catch (error) {
-        console.error('Erro ao buscar dados:', error);
-        res.status(500).send('Erro ao buscar dados do banco de dados.');
-    }
-};
 
 
 exports.listarDados = async (req, res) => {
     try {
-        // Seleciona apenas as colunas mais importantes para a listagem principal
-        const query = "SELECT id, nomesc, tipoesc_desc, mun, distr FROM escolas_dependencias ORDER BY id DESC LIMIT 100";
+        // Query CORRIGIDA para selecionar as colunas exatas
+        const query = "SELECT id, nomedep, de, mun, distr, codesc, nomesc, salas_aula FROM escolas_dependencias ORDER BY id DESC LIMIT 100";
+        
         const [rows] = await db.query(query);
         res.status(200).json(rows);
     } catch (error) {

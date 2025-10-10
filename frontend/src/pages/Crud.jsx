@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import Modal from 'react-modal';
 
+// ... (o código do modal e a configuração inicial permanecem os mesmos)
 const customModalStyles = {
   content: {
     top: '50%', left: '50%', right: 'auto', bottom: 'auto',
@@ -34,8 +35,8 @@ export default function CrudPage() {
     fetchDados();
   }, []);
 
+  // As funções de abrir/fechar modal e excluir permanecem as mesmas
   const abrirModalDetalhes = async (id) => {
-    // A lógica do modal continua buscando todos os detalhes, o que é correto
     try {
         const response = await fetch(`http://localhost:3000/escolas-dependencias/${id}`);
         const data = await response.json();
@@ -45,26 +46,21 @@ export default function CrudPage() {
         console.error("Erro ao buscar detalhes do item", error);
     }
   };
-
-  const fecharModal = () => {
-    setModalIsOpen(false);
-    setItemSelecionado(null);
-  };
-
+  const fecharModal = () => { setModalIsOpen(false); setItemSelecionado(null); };
   const handleExcluir = async (id) => {
-    if (!window.confirm("Tem certeza que deseja excluir este registro?")) return;
+    if (!window.confirm("Tem certeza?")) return;
     try {
       await fetch(`http://localhost:3000/escolas-dependencias/${id}`, { method: 'DELETE' });
       fetchDados();
     } catch (error) {
-      console.error("Erro ao excluir", error);
       alert("Falha ao excluir o registro.");
     }
   };
 
   if (loading) return <p>Carregando dados...</p>;
 
-  // Define os cabeçalhos e as chaves de dados correspondentes
+  // --- MUDANÇA PRINCIPAL AQUI ---
+  // Define os cabeçalhos e as chaves de dados correspondentes às 8 colunas que você pediu
   const headers = [
     { key: 'id', label: 'ID' },
     { key: 'nomedep', label: 'Nome Dep.' },
@@ -100,6 +96,7 @@ export default function CrudPage() {
         </tbody>
       </table>
 
+      {/* O Modal não precisa de alterações */}
       <Modal isOpen={modalIsOpen} onRequestClose={fecharModal} style={customModalStyles} contentLabel="Detalhes do Registro">
         {itemSelecionado && (
           <div>
