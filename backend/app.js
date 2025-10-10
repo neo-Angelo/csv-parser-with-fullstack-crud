@@ -14,5 +14,5 @@ app.use('/', routes);
 
 // Inicia o servidor
 app.listen(PORT, () => {
-  console.log(`🚀 Servidor modularizado rodando em http://localhost:${PORT}`);
+  console.log(`Servidor em http://localhost:${PORT}`);
 });
