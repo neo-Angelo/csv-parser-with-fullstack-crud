@@ -78,7 +78,7 @@ export default function CrudPage() {
 
   return (
     <div className="container">
-      <h1>Tabela de Dependências Escolares</h1>
+      <h1>Tabela de Unidades Escolares</h1>
       <table className="crud-table">
         <thead>
           <tr>
