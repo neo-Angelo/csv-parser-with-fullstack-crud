@@ -29,7 +29,7 @@ function normalizeKey(key) {
     .trim()
     .normalize('NFD')
     .replace(/[\u0000-\u001F\u007F-\u009F]|[\u0300-\u036f]/g, "") // Removendo acentos e caracteres
-    .replace(/\s+/g, '') // Remove todos os espaços
+    .replace(/\s+/g, '') // Remove todos os espaços das palavras
     .toLowerCase();
 }
 
@@ -133,5 +133,5 @@ app.post('/upload-csv', upload.single('file'), (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`🚀 Servidor rodando em http://localhost:${PORT}`);
+  console.log(` Servidor em http://localhost:${PORT}`);
 });
