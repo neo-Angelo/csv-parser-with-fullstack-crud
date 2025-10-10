@@ -135,35 +135,39 @@ exports.excluirDado = async (req, res) => {
     }
 };
 
-// CREATE - Nova função para criar um registro
+
 exports.criarDado = async (req, res) => {
-    const colunas = Object.keys(req.body).map(k => `\`${k}\``).join(', ');
-    const placeholders = Object.keys(req.body).map(() => '?').join(', ');
-    const valores = Object.values(req.body);
+    // Pega apenas os campos enviados no corpo da requisição
+    const campos = req.body;
+    const colunas = Object.keys(campos).map(k => `\`${k}\``).join(', ');
+    const placeholders = Object.keys(campos).map(() => '?').join(', ');
+    const valores = Object.values(campos);
 
     const query = `INSERT INTO escolas_dependencias (${colunas}) VALUES (${placeholders})`;
     try {
         const [result] = await db.query(query, valores);
-        res.status(201).json({ id: result.insertId, ...req.body });
+        // Retorna o novo item criado, incluindo o novo ID
+        res.status(201).json({ id: result.insertId, ...campos });
     } catch (error) {
         console.error('Erro ao criar registro:', error);
         res.status(500).send('Erro ao criar registro.');
     }
 };
 
-// UPDATE - Nova função para editar um registro
+
 exports.editarDado = async (req, res) => {
     const { id } = req.params;
-    const campos = Object.keys(req.body).map(key => `\`${key}\` = ?`).join(', ');
-    const valores = Object.values(req.body);
+    const campos = req.body;
+    const camposUpdate = Object.keys(campos).map(key => `\`${key}\` = ?`).join(', ');
+    const valores = Object.values(campos);
 
-    const query = `UPDATE escolas_dependencias SET ${campos} WHERE id = ?`;
+    const query = `UPDATE escolas_dependencias SET ${camposUpdate} WHERE id = ?`;
     try {
         const [result] = await db.query(query, [...valores, id]);
         if (result.affectedRows === 0) {
             return res.status(404).send('Registro não encontrado.');
         }
-        res.status(200).json({ id, ...req.body });
+        res.status(200).json({ id, ...campos });
     } catch (error) {
         console.error('Erro ao editar registro:', error);
         res.status(500).send('Erro ao editar registro.');
