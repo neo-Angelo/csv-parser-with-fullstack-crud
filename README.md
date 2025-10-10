@@ -29,7 +29,7 @@ Para executar este projeto, é necessário ter **Node.js (v18+)** e **MySQL Serv
 
 a. **Clone o repositório:**
 ```bash
-git clone <[URL_DO_SEU_REPOSITORIO](https://github.com/neo-Angelo/fullstack_crud.git)>
+git clone https://github.com/neo-Angelo/fullstack_crud.git
 ```
 
 b. **Instale as dependências do Backend:**
