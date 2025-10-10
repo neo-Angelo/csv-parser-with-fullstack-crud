@@ -1,0 +1,2 @@
+# Ignorar pastas de dependências do Node
+backend/node_modules
