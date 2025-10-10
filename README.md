@@ -63,6 +63,16 @@ sudo mysql -u root -p
 CREATE DATABASE IF NOT EXISTS escolas;
 EXIT;
 ```
+c. **Crie o usuário da aplicação:**
+* Ainda dentro do console MySQL, execute os comandos abaixo para criar o usuário `admin` com a senha `admin` e dar a ele as permissões necessárias.
+```sql
+CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin';
+GRANT ALL PRIVILEGES ON escolas.* TO 'admin'@'localhost';
+FLUSH PRIVILEGES;
+EXIT;
+```
+*Este é o usuário que a aplicação backend usará para se conectar ao banco de dados, necessario para utilizar a aplicacao, voce pode mudar tambem no codigo o nome e senha do mesmo.*
+
 
 #### **3. Execução da Aplicação**
 
