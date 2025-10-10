@@ -99,3 +99,81 @@ exports.listarDados = async (req, res) => {
         res.status(500).send('Erro ao buscar dados do banco de dados.');
     }
 };
+
+
+exports.listarDados = async (req, res) => {
+    try {
+        // Seleciona apenas as colunas mais importantes para a listagem principal
+        const query = "SELECT id, nomesc, tipoesc_desc, mun, distr FROM escolas_dependencias ORDER BY id DESC LIMIT 100";
+        const [rows] = await db.query(query);
+        res.status(200).json(rows);
+    } catch (error) {
+        console.error('Erro ao buscar dados:', error);
+        res.status(500).send('Erro ao buscar dados do banco de dados.');
+    }
+};
+
+// READ (One) - Nova função para buscar TODOS os detalhes de UM registro
+exports.listarUmDado = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const [rows] = await db.query('SELECT * FROM escolas_dependencias WHERE id = ?', [id]);
+        if (rows.length === 0) {
+            return res.status(404).send('Registro não encontrado.');
+        }
+        res.status(200).json(rows[0]);
+    } catch (error) {
+        console.error('Erro ao buscar um dado:', error);
+        res.status(500).send('Erro ao buscar o dado.');
+    }
+};
+
+// DELETE - Nova função para excluir um registro
+exports.excluirDado = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const [result] = await db.query('DELETE FROM escolas_dependencias WHERE id = ?', [id]);
+        if (result.affectedRows === 0) {
+            return res.status(404).send('Registro não encontrado.');
+        }
+        res.status(200).send({ message: 'Registro excluído com sucesso.' });
+    } catch (error) {
+        console.error('Erro ao excluir registro:', error);
+        res.status(500).send('Erro ao excluir registro.');
+    }
+};
+
+// CREATE - Nova função para criar um registro
+exports.criarDado = async (req, res) => {
+    const colunas = Object.keys(req.body).map(k => `\`${k}\``).join(', ');
+    const placeholders = Object.keys(req.body).map(() => '?').join(', ');
+    const valores = Object.values(req.body);
+
+    const query = `INSERT INTO escolas_dependencias (${colunas}) VALUES (${placeholders})`;
+    try {
+        const [result] = await db.query(query, valores);
+        res.status(201).json({ id: result.insertId, ...req.body });
+    } catch (error) {
+        console.error('Erro ao criar registro:', error);
+        res.status(500).send('Erro ao criar registro.');
+    }
+};
+
+// UPDATE - Nova função para editar um registro
+exports.editarDado = async (req, res) => {
+    const { id } = req.params;
+    const campos = Object.keys(req.body).map(key => `\`${key}\` = ?`).join(', ');
+    const valores = Object.values(req.body);
+
+    const query = `UPDATE escolas_dependencias SET ${campos} WHERE id = ?`;
+    try {
+        const [result] = await db.query(query, [...valores, id]);
+        if (result.affectedRows === 0) {
+            return res.status(404).send('Registro não encontrado.');
+        }
+        res.status(200).json({ id, ...req.body });
+    } catch (error) {
+        console.error('Erro ao editar registro:', error);
+        res.status(500).send('Erro ao editar registro.');
+    }
+};
