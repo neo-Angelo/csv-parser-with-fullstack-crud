@@ -1,2 +1,30 @@
-# Ignorar pastas de dependências do Node
-backend/node_modules
+# Dependências
+**/node_modules
+# Arquivos de build
+/frontend/dist
+
+# Arquivos de upload temporários
+/backend/uploads/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Arquivos de ambiente
+.env*
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
