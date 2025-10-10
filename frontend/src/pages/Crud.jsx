@@ -1,4 +1,4 @@
-// src/pages/CrudPage.jsx
+// src/pages/Crud.jsx
 import { useState, useEffect } from "react";
 import Modal from 'react-modal';
 
@@ -74,44 +74,44 @@ export default function CrudPage() {
 
   return (
     <div className="container">
-      <h1>Tabela de Unidades Escolares</h1>
-      <table className="crud-table">
-        <thead>
-          <tr>
-            {headers.map(h => <th key={h.key}>{h.label}</th>)}
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          {dados.map(item => (
-            <tr key={item.id}>
-              {headers.map(h => <td key={`${item.id}-${h.key}`}>{item[h.key]}</td>)}
-              <td>
-                <button onClick={() => abrirModalDetalhes(item.id)}>Detalhes</button>
-                <button>Editar</button>
-                <button onClick={() => handleExcluir(item.id)}>Excluir</button>
-              </td>
+        <h1>Tabela de Unidades Escolares</h1>
+        <table className="crud-table">
+          <thead>
+            <tr>
+              {headers.map(h => <th key={h.key}>{h.label}</th>)}
+              <th>Ações</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {dados.map(item => (
+              <tr key={item.id}>
+                {headers.map(h => <td key={`${item.id}-${h.key}`}>{item[h.key]}</td>)}
+                <td>
+                  <button className="btn-details" onClick={() => abrirModalDetalhes(item.id)}>Detalhes</button>
+                  <button className="btn-edit">Editar</button>
+                  <button className="btn-delete" onClick={() => handleExcluir(item.id)}>Excluir</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
 
-      {/* O Modal não precisa de alterações */}
-      <Modal isOpen={modalIsOpen} onRequestClose={fecharModal} style={customModalStyles} contentLabel="Detalhes do Registro">
-        {itemSelecionado && (
-          <div>
-            <h2>Detalhes do Registro ID: {itemSelecionado.id}</h2>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
-              {Object.entries(itemSelecionado).map(([key, value]) => (
-                <div key={key}>
-                  <strong>{key}:</strong> {String(value)}
-                </div>
-              ))}
+        {/* O Modal não precisa de alterações */}
+        <Modal isOpen={modalIsOpen} onRequestClose={fecharModal} style={customModalStyles} contentLabel="Detalhes do Registro">
+          {itemSelecionado && (
+            <div>
+              <h2>Detalhes do Registro ID: {itemSelecionado.id}</h2>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+                {Object.entries(itemSelecionado).map(([key, value]) => (
+                  <div key={key}>
+                    <strong>{key}:</strong> {String(value)}
+                  </div>
+                ))}
+              </div>
+              <button onClick={fecharModal} style={{ marginTop: '20px' }}>Fechar</button>
             </div>
-            <button onClick={fecharModal} style={{ marginTop: '20px' }}>Fechar</button>
-          </div>
-        )}
-      </Modal>
+          )}
+        </Modal>
     </div>
   );
 }

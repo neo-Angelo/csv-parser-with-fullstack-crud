@@ -1,36 +1,171 @@
-.upload-container {
-  font-family: Arial, sans-serif;
+/* ========================================= */
+/* Tema Global e Layout                      */
+/* ========================================= */
+:root {
+  --header-height: 60px;
+  --max-width: 1200px;
+  --bg-color: #f5f7fa;
+  --header-bg: #2c3e50;
+  --text-color: #2c3e50;
+  --link-color: #ecf0f1;
+  --hover-color: #3498db;
+  --white: #ffffff;
+  --border-color: #e0e6ed;
+}
+
+body, html, #root {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+/* ========================================= */
+/* Cabeçalho                                 */
+/* ========================================= */
+.app-header {
+  background-color: var(--header-bg);
+  height: var(--header-height);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-header nav {
+  display: flex;
+  gap: 2rem;
+}
+
+.app-header nav a {
+  color: var(--link-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  padding-bottom: 3px;
+  border-bottom: 2px solid transparent;
+}
+
+.app-header nav a:hover {
+  color: var(--white);
+  border-bottom-color: var(--hover-color);
+}
+
+/* ========================================= */
+/* Conteúdo Principal                        */
+/* ========================================= */
+.content-wrapper {
+  padding: 2rem 1rem 4rem;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  background-color: var(--white);
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  animation: fadeIn 0.3s ease;
+}
+
+h1 {
   text-align: center;
-  margin-top: 50px;
+  color: var(--header-bg);
+  margin-bottom: 1.5rem;
 }
 
-.upload-form {
-  margin-top: 20px;
+/* ========================================= */
+/* Tabela CRUD                               */
+/* ========================================= */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
 }
 
-input[type="file"] {
-  padding: 10px;
-  border: 1px solid #ccc;
+.crud-table {
+  width: 100%;
+  border-collapse: collapse;
   border-radius: 8px;
+  overflow: hidden;
 }
 
-button {
-  margin-left: 10px;
-  padding: 10px 15px;
-  background-color: #007bff;
-  color: white;
+.crud-table th, .crud-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.crud-table th {
+  background-color: #f8fafc;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  color: #4b5563;
+}
+
+.crud-table tr:hover {
+  background-color: #f1f5f9;
+  transition: background 0.2s ease;
+}
+
+/* ========================================= */
+/* Botões                                    */
+/* ========================================= */
+.crud-table td button {
+  margin-right: 6px;
+  padding: 6px 12px;
   border: none;
-  border-radius: 8px;
+  border-radius: 5px;
   cursor: pointer;
+  font-size: 0.85rem;
+  transition: transform 0.15s ease, opacity 0.15s ease;
 }
 
-button:hover {
-  background-color: #0056b3;
+.crud-table td button:hover {
+  transform: translateY(-1px);
+  opacity: 0.9;
 }
 
-.message {
-  margin-top: 20px;
-  color: #333;
-  font-weight: bold;
+.btn-details {
+  background-color: #3498db;
+  color: #fff;
+}
+
+.btn-edit {
+  background-color: #f1c40f;
+  color: #2c3e50;
+}
+
+.btn-delete {
+  background-color: #e74c3c;
+  color: #fff;
+}
+
+/* ========================================= */
+/* Responsividade                            */
+/* ========================================= */
+@media (max-width: 768px) {
+  .crud-table th, .crud-table td {
+    font-size: 0.8rem;
+    padding: 8px 10px;
+  }
+
+  h1 {
+    font-size: 1.4rem;
+  }
+
+  .container {
+    padding: 1.5rem;
+  }
+}
+
+/* ========================================= */
+/* Animações                                 */
+/* ========================================= */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 

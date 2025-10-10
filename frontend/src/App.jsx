@@ -7,6 +7,7 @@ import './App.css';
 function App() {
   return (
     <BrowserRouter>
+      {/* O header continua como está */}
       <header className="app-header">
         <nav>
           <Link to="/">Ver Dados (CRUD)</Link>
@@ -14,12 +15,17 @@ function App() {
         </nav>
       </header>
 
-      <main>
-        <Routes>
-          <Route path="/" element={<CrudPage />} />
-          <Route path="/upload" element={<UploadPage />} />
-        </Routes>
-      </main>
+      {/* --- CORREÇÃO AQUI --- */}
+      {/* Adicionando a div que o CSS usa para centralizar o conteúdo */}
+      <div className="content-wrapper">
+        <main>
+          <Routes>
+            <Route path="/" element={<CrudPage />} />
+            <Route path="/upload" element={<UploadPage />} />
+          </Routes>
+        </main>
+      </div>
+      
     </BrowserRouter>
   );
 }
