@@ -115,3 +115,5 @@ Após a aplicação ser iniciada, siga os passos abaixo para operar o sistema:
     * **Excluir:** Clique no botão "Excluir" para remover um registro (uma confirmação será solicitada).
     * **Adicionar:** Clique no botão "Adicionar Novo" no topo da página para abrir um formulário e criar um novo registro.
     * **Editar:** Clique no botão "Editar" em qualquer linha para abrir um formulário preenchido e alterar os dados daquele registro.
+
+<img width="1902" height="946" alt="Image" src="https://github.com/user-attachments/assets/2895bb99-650a-4fc0-8db6-4adf65dfa7e0" />
