@@ -1,6 +1,4 @@
-/* ========================================= */
-/* Tema Global e Layout                      */
-/* ========================================= */
+
 :root {
   --header-height: 60px;
   --max-width: 1200px;
@@ -21,16 +19,25 @@ body, html, #root {
   color: var(--text-color);
 }
 
-/* ========================================= */
-/* Cabeçalho                                 */
-/* ========================================= */
+
 .app-header {
   background-color: var(--header-bg);
   height: var(--header-height);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+
+
+  width: 100vw;
+  position: relative;
+  left: 0;
+  top: 0;
+
   display: flex;
   justify-content: center;
   align-items: center;
+
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .app-header nav {
@@ -52,9 +59,7 @@ body, html, #root {
   border-bottom-color: var(--hover-color);
 }
 
-/* ========================================= */
-/* Conteúdo Principal                        */
-/* ========================================= */
+
 .content-wrapper {
   padding: 2rem 1rem 4rem;
   display: flex;
@@ -63,7 +68,6 @@ body, html, #root {
 
 .container {
   width: 100%;
-  max-width: var(--max-width);
   background-color: var(--white);
   border-radius: 10px;
   padding: 2rem;
@@ -77,9 +81,7 @@ h1 {
   margin-bottom: 1.5rem;
 }
 
-/* ========================================= */
-/* Tabela CRUD                               */
-/* ========================================= */
+
 .table-wrapper {
   width: 100%;
   overflow-x: auto;
@@ -110,9 +112,7 @@ h1 {
   transition: background 0.2s ease;
 }
 
-/* ========================================= */
-/* Botões                                    */
-/* ========================================= */
+
 .crud-table td button {
   margin-right: 6px;
   padding: 6px 12px;
@@ -143,9 +143,7 @@ h1 {
   color: #fff;
 }
 
-/* ========================================= */
-/* Responsividade                            */
-/* ========================================= */
+
 @media (max-width: 768px) {
   .crud-table th, .crud-table td {
     font-size: 0.8rem;
@@ -161,11 +159,70 @@ h1 {
   }
 }
 
-/* ========================================= */
-/* Animações                                 */
-/* ========================================= */
+
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
+
+
+.upload-container {
+  min-height: calc(100vh - var(--header-height)); /* ocupa a altura total menos o cabeçalho */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  /* centraliza verticalmente */
+  align-items: center;      /* centraliza horizontalmente */
+  text-align: center;
+  padding: 2rem;
+  background-color: var(--bg-color);
+}
+
+.upload-container h1 {
+  color: var(--header-bg);
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+}
+
+.upload-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  background-color: var(--white);
+  padding: 2rem 3rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.upload-form input[type="file"] {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #f9fafb;
+}
+
+.upload-form button {
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #3498db;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.upload-form button:hover {
+  background-color: #2980b9;
+  transform: translateY(-1px);
+}
+
+.message {
+  margin-top: 1.5rem;
+  background-color: #ecf0f1;
+  padding: 0.8rem 1.2rem;
+  border-radius: 6px;
+  color: #2c3e50;
+  max-width: 400px;
+}
