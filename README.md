@@ -23,7 +23,7 @@ Esta é uma aplicação web full-stack desenvolvida como parte do processo selet
 
 ## Instruções para execução local
 
-Para executar este projeto, é necessário ter **Node.js (v18+)** e **MySQL Server** instalados em um ambiente **WSL (Windows Subsystem for Linux)**.
+Para executar este projeto, é necessário ter **Node.js (v18+)** e **MySQL Server** instalados em um ambiente **WSL (Windows Subsystem for Linux)** **ou Linux** .
 
 #### **1. Preparação do Ambiente**
 
@@ -47,7 +47,7 @@ npm install
 
 #### **2. Configuração do Banco de Dados**
 
-a. **Inicie o serviço do MySQL no WSL:**
+a. **Inicie o serviço do MySQL no WSL:** **ou Linux**
 ```bash
 sudo service mysql start
 ```
