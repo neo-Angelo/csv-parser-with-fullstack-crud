@@ -1,6 +1,6 @@
 # Desafio Prático - Desenvolvedor Full-stack
 
-Esta é uma aplicação web full-stack desenvolvida como parte do processo seletivo. O sistema gerencia dados de infraestrutura escolar, permitindo a importação de dados via CSV e a manipulação completa (CRUD) dos registros através de uma interface web.
+Esta é uma aplicação web full-stack desenvolvida como parte do processo seletivo. O sistema gerencia dados de infraestrutura escolar, permitindo a importação de dados via CSV e a manipulação completa (CRUD) dos registros através de uma interface web. devido ao tempo foi feito o parse do csv do dicionario do dataset, utilizando seus dados para criar a propria tabela para a inserçao dos dados, tornando o projeto mais intuitivo no tempo dado, e fazendo a limpeza e possiveis correçao dos dados (colunas duplicadas e outros). 
 
 ---
 
@@ -23,14 +23,13 @@ Esta é uma aplicação web full-stack desenvolvida como parte do processo selet
 
 ## Instruções para execução local
 
-Para executar este projeto, é necessário ter **Node.js (v18+)** e **MySQL Server** instalados em um ambiente **WSL (Windows Subsystem for Linux)**.
+Para executar este projeto, é necessário ter **Node.js (v18+)** e **MySQL Server** instalados em um ambiente **WSL (Windows Subsystem for Linux)** **ou Linux** .
 
 #### **1. Preparação do Ambiente**
 
 a. **Clone o repositório:**
 ```bash
-git clone <URL_DO_SEU_REPOSITORIO>
-cd <NOME_DA_PASTA_DO_PROJETO>
+git clone https://github.com/neo-Angelo/fullstack_crud.git
 ```
 
 b. **Instale as dependências do Backend:**
@@ -48,7 +47,7 @@ npm install
 
 #### **2. Configuração do Banco de Dados**
 
-a. **Inicie o serviço do MySQL no WSL:**
+a. **Inicie o serviço do MySQL no WSL:** **ou Linux**
 ```bash
 sudo service mysql start
 ```
@@ -63,6 +62,16 @@ sudo mysql -u root -p
 CREATE DATABASE IF NOT EXISTS escolas;
 EXIT;
 ```
+c. **Crie o usuário da aplicação:**
+* Ainda dentro do console MySQL, execute os comandos abaixo para criar o usuário `admin` com a senha `admin` e dar a ele as permissões necessárias.
+```sql
+CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin';
+GRANT ALL PRIVILEGES ON escolas.* TO 'admin'@'localhost';
+FLUSH PRIVILEGES;
+EXIT;
+```
+*Este é o usuário que a aplicação backend usará para se conectar ao banco de dados, necessario para utilizar a aplicacao, voce pode mudar tambem no codigo o nome e senha do mesmo.*
+
 
 #### **3. Execução da Aplicação**
 
@@ -71,7 +80,7 @@ EXIT;
 a. **Inicie o servidor Backend:**
 * No terminal da pasta `backend`, execute:
 ```bash
-nodemon app.js
+nodemon app.js ou node app.js
 ```
 * O servidor estará disponível em `http://localhost:3000`.
 
@@ -106,3 +115,25 @@ Após a aplicação ser iniciada, siga os passos abaixo para operar o sistema:
     * **Excluir:** Clique no botão "Excluir" para remover um registro (uma confirmação será solicitada).
     * **Adicionar:** Clique no botão "Adicionar Novo" no topo da página para abrir um formulário e criar um novo registro.
     * **Editar:** Clique no botão "Editar" em qualquer linha para abrir um formulário preenchido e alterar os dados daquele registro.
+
+## Como esta o sistema
+
+* Após criar o banco de dados, e a tabela através da rota http://localhost:3000/criar-tabela
+, adicione o arquivo CSV com os dados nesta página.
+
+* O CSV original e seu dicionário de dados podem ser encontrados em:
+https://dados.educacao.sp.gov.br/dataset/instala%C3%A7%C3%B5es-f%C3%ADsicas-por-unidade-escolar
+
+* Também é possível utilizar outro arquivo CSV, desde que suas colunas e tipos de dados sigam o mesmo padrão definido no dicionário de dados do conjunto original.
+
+<img width="1902" height="946" alt="Image" src="https://github.com/user-attachments/assets/2895bb99-650a-4fc0-8db6-4adf65dfa7e0" />
+
+* Após a inserção dos dados, a tela do CRUD exibirá a tabela diretamente do banco de dados já populada. Nessa interface, será possível realizar todas as operações de CRUD (criação, leitura, atualização e exclusão).
+
+<img width="1907" height="947" alt="Image" src="https://github.com/user-attachments/assets/c2f9dfea-c09f-4ab2-ae65-631337f9a3df" />
+
+* As telas de edição e inserção possuem layouts semelhantes. Nem todas as colunas foram incluídas nessas interfaces devido ao grande volume de dados; por isso, utilizam placeholders que são enviados e inseridos corretamente no banco de dados de forma funcional.
+
+<img width="1902" height="933" alt="Image" src="https://github.com/user-attachments/assets/ea8f9a75-c524-4c0e-a885-27bb073701e5" />
+
+<img width="1904" height="935" alt="Image" src="https://github.com/user-attachments/assets/365a2ec4-5c18-4773-bfbc-49d9e0dad031" />
