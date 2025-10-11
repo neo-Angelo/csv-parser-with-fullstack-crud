@@ -1,4 +1,4 @@
-// src/pages/UploadPage.jsx
+
 import { useState } from "react";
 
 export default function UploadPage() {

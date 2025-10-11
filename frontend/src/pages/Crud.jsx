@@ -1,9 +1,9 @@
-// src/pages/CrudPage.jsx
+
 import { useState, useEffect } from "react";
 import Modal from 'react-modal';
-import '../App.css'; // Importando o CSS para os estilos dos botões
+import '../App.css'; 
 
-// Estilos para o Modal
+
 const customModalStyles = {
   content: {
     top: '50%', left: '50%', right: 'auto', bottom: 'auto',
@@ -48,7 +48,7 @@ export default function CrudPage() {
     fetchDados();
   }, []);
 
-  // --- Funções do Modal de Detalhes ---
+  
   const abrirModalDetalhes = async (id) => {
     try {
       const response = await fetch(`http://localhost:3000/escolas-dependencias/${id}`);
@@ -64,7 +64,7 @@ export default function CrudPage() {
     setItemSelecionado(null);
   };
 
-  // --- Funções do Modal de Formulário ---
+  
   const abrirFormModal = (item = null) => {
     setEditingItem(item);
     setFormData(item ? { nomesc: item.nomesc, mun: item.mun, distr: item.distr } : { nomesc: '', mun: '', distr: '' });
@@ -102,7 +102,7 @@ export default function CrudPage() {
     }
   };
 
-  // --- Função de Excluir ---
+  
   const handleExcluir = async (id) => {
     if (!window.confirm("Tem certeza que deseja excluir este registro?")) return;
     try {

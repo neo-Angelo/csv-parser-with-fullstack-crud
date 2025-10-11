@@ -94,7 +94,7 @@ exports.uploadCsv = (req, res) => {
 
 exports.listarDados = async (req, res) => {
     try {
-        // Query CORRIGIDA para selecionar as colunas exatas
+        
         const query = "SELECT id, nomedep, de, mun, distr, codesc, nomesc, salas_aula FROM escolas_dependencias ORDER BY id DESC LIMIT 100";
         
         const [rows] = await db.query(query);
@@ -105,7 +105,7 @@ exports.listarDados = async (req, res) => {
     }
 };
 
-// READ (One) - Nova função para buscar TODOS os detalhes de UM registro
+
 exports.listarUmDado = async (req, res) => {
     const { id } = req.params;
     try {
@@ -120,7 +120,7 @@ exports.listarUmDado = async (req, res) => {
     }
 };
 
-// DELETE - Nova função para excluir um registro
+
 exports.excluirDado = async (req, res) => {
     const { id } = req.params;
     try {
@@ -137,7 +137,7 @@ exports.excluirDado = async (req, res) => {
 
 
 exports.criarDado = async (req, res) => {
-    // Pega apenas os campos enviados no corpo da requisição
+    
     const campos = req.body;
     const colunas = Object.keys(campos).map(k => `\`${k}\``).join(', ');
     const placeholders = Object.keys(campos).map(() => '?').join(', ');
@@ -146,7 +146,7 @@ exports.criarDado = async (req, res) => {
     const query = `INSERT INTO escolas_dependencias (${colunas}) VALUES (${placeholders})`;
     try {
         const [result] = await db.query(query, valores);
-        // Retorna o novo item criado, incluindo o novo ID
+        
         res.status(201).json({ id: result.insertId, ...campos });
     } catch (error) {
         console.error('Erro ao criar registro:', error);
