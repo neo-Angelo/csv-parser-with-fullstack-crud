@@ -1,4 +1,4 @@
-# Desafio Prático - Desenvolvedor Full-stack
+# csv parser Full-stack
 
 Esta é uma aplicação web full-stack desenvolvida como parte do processo seletivo. O sistema gerencia dados de infraestrutura escolar, permitindo a importação de dados via CSV e a manipulação completa (CRUD) dos registros através de uma interface web. devido ao tempo foi feito o parse do csv do dicionario do dataset, utilizando seus dados para criar a propria tabela para a inserçao dos dados, tornando o projeto mais intuitivo no tempo dado, e fazendo a limpeza e possiveis correçao dos dados (colunas duplicadas e outros). 
 
